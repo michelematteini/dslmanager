@@ -1,0 +1,14 @@
+
+(* Grammatica ebnf in ebnf *)
+
+Grammar 		::= { Rule }*;
+Rule 			::= Symbol, "::=", Expression, ";";
+Symbol			::= { #any_char }*;
+Expression 		::= Symbol;
+Expression 		::= Literal;
+Expression 		::= "(", Expression, ")";
+Expression 		::= "{", Expression, "}", ( "*" | "+" );
+Expression 		::= Expression, "|", Expression;
+Expression 		::= Expression, ",", Expression;
+Expression 		::= "[", Expression, "]";
+Literal 		::= "``", { #any_char }*,  "``";
